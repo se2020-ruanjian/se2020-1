@@ -2,6 +2,7 @@ from tkinter import *
 import matlab
 import matlab.engine
 import string
+from math import pi
 root = Tk()
 eng = matlab.engine.start_matlab()
 v1 = IntVar()
@@ -10,7 +11,7 @@ flag = 1
 # eng.se_sin(90)
 
 # 窗口大小  （宽x高）
-root.geometry("250x220")
+root.geometry("300x220")
 
 # 设置title
 root.title("三角函数计算")
@@ -39,6 +40,11 @@ frame_bord.pack(padx=10, pady=10)
 
 calc = []
 isoperate = False
+
+
+
+#out1=Label(text="sin:",font=('KaiTi',12,'bold'))
+#out1.grid(row=7,column=0)
 
 #
 def change(num):
@@ -137,6 +143,9 @@ def sel():
 
 def sign(display):
     angle = float(v.get())
+    while 1:
+        if (angle < 360.0): break
+        angle = angle - 360.0
     flag = v1.get()
     print(flag)
     if(flag == 1):
@@ -154,7 +163,8 @@ def sign(display):
             numerator =-numerator * angle * angle #求下一项的分子
             denominator =denominator * 2 * i * (2 * i + 1) # 求下一项的分母
             i = i + 1
-        result = round(result, 3)
+    result = round(result,6)
+
         # print(result)
         # v.set(result)
     if(display==1):
@@ -163,34 +173,27 @@ def sign(display):
 
 def cos(display):
     angle = float(v.get())
+    while 1:
+        if (angle < 360.0): break
+        angle = angle - 360.0
     flag = v1.get()
     print(flag)
     if(flag == 1):
         result = eng.se_cos(angle)
     else:
-        x = (angle / 180) * 3.14 # 角度转化为弧度
-        result = 0 # 结果
-        numerator = 1 # 泰勒展开式的分子
-        denominator = 1 # 泰勒展开式的分母
-        s = 1
-        temp_result = 1 # 展开项
-
-        my_eps = 1 / 100000000;
-        n = 0
-        m = 1
-        while(abs(temp_result) >my_eps):
-            result = result +temp_result
-            s = -s
-            n = n + 2
-            m = 1
-
-            for i in range(1, n + 1):
-                m = m * i
-            numerator = pow(x, n) # 分子等于x的n次方
-            denominator = m # 分母等于n的阶乘
-            temp_result = s * numerator / denominator
-        result = round(result, 3)
-        print(result)
+        x = (angle/180)*pi;
+        cosTotal  = 1
+        count = 2
+        term = 1
+        x=float(x) 
+        while abs(term) > 1e-20:
+            term *= (-x * x)/( count * (count-1) )   
+            cosTotal += term
+            count += 2
+            #print("%1d  %22.17e" % (count, term))
+        result = cosTotal
+    result = round(result,6)
+        #print(result)
     if(display==1):
         v.set(result)
     return result
@@ -198,8 +201,11 @@ def cos(display):
 def tan():
     sin_res = sign(0)
     cos_res = cos(0)
-    result = sin_res / cos_res
-    result = round(result, 3)
+    if(cos_res == 0):
+        v.set("error")
+    else:
+        result =  sin_res / cos_res
+        result = round(result,6)
     # print(result)
     v.set(result)
 
@@ -210,10 +216,13 @@ def cot():
         v.set("error")
     else:
         result = cos_res / sin_res
-        result = round(result, 3)
+        result = round(result, 6)
         # print(result)
         v.set(result)
 
+
+#def test():
+    
 
 # Button(父组件，属性参数)
 button_del = Button(frame_bord, text='←', width='5', height='1', command=lambda: delete()).grid(row='1', column='0')

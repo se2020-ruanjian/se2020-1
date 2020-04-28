@@ -1,16 +1,11 @@
-%% cos（x)= 1 - x^2/2! + x^4/4! 
- 
-%%
-clc
- 
-%%
-A = input('please enter the degree of angle A = ');
-x = A/180*pi;
+function cos_se = cos_se( A )
+%% cos（x)= 1 - x^2/2! + x^4/4! 使用泰勒级数计算cos函数
+x = (A/180)*pi;%把输入的角度转换为弧度
  
 %%
 symbol=1;
 sum=0;
-my_eps=10^-3;
+my_eps=10^-8;
 temp_sum=1;
 power=0;
 while abs(temp_sum)>my_eps
@@ -18,8 +13,8 @@ while abs(temp_sum)>my_eps
     symbol=-symbol;
     power=power+2;
     temp_sum=symbol*x^power/factorial(power);
+    
 end
-disp(['cos(' num2str(x) ') is: ' num2str(sum)]);
-right=cos(x);
-right = roundn(right,-3);
-disp(['the right answer is: ' num2str(right)]);
+cos_se = sum;
+end
+
