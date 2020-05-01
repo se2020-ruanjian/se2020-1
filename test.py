@@ -70,7 +70,4 @@ def test():
     acccot_p =round((score_cotp / 1000),8)
     
     return accsin_m,acccos_m,acctan_m,acccot_m,accsin_p,acccos_p,acctan_p,acccot_p
-
-accsin_m,acccos_m,acctan_m,acccot_m,accsin_p,acccos_p,acctan_p,acccot_p = test()
-print(accsin_m,acccos_m,acctan_m,acccot_m,accsin_p,acccos_p,acctan_p,acccot_p)
     
