@@ -19,7 +19,7 @@ def sign(angle,flag):
         result = 0
         t = angle
         n = 1
-        while (abs(t) >= 1e-5):
+        while (abs(t) >= 1e-10):
             result += t
             n += 1
             t = -t * angle * angle / (2 * n - 1) / (2 * n - 2)
@@ -38,7 +38,7 @@ def cos(angle,flag):
         count = 2
         term = 1
         x=float(x) 
-        while abs(term) > 1e-20:
+        while abs(term) > 1e-10:
             term *= (-x * x)/( count * (count-1) )   
             cosTotal += term
             count += 2

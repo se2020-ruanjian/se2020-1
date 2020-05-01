@@ -30,13 +30,14 @@ def test():
         sin_gt = math.sin(x / 180 * math.pi)
         cos_gt = math.cos(x / 180 * math.pi)
         tan_gt = math.tan(x / 180 * math.pi)
-        cot_gt = round((1 / (math.tan(x / 180 * math.pi))),6)
+        cot_gt = (1 / (math.tan(x / 180 * math.pi)))
+        
     
         #matlab计算出的值
         sin_sem = sign(x,1)
         cos_sem = cos(x,1)
         tan_sem = sin_sem / cos_sem
-        cot_sem = cos_sem / sin_sem
+        cot_sem = cos_sem / sin_sem 
     
         #python计算出的值
         sin_sep = sign(x,2)
@@ -58,15 +59,18 @@ def test():
     
     
     
-    accsin_m =round((score_sinm / 1000),6)
-    acccos_m =round((score_cosm/ 1000),6)
-    acctan_m =round((score_tanm / 1000),6)
-    acccot_m =round((score_cotm / 1000),6)
+    accsin_m =round((score_sinm / 1000),8)
+    acccos_m =round((score_cosm/ 1000),8)
+    acctan_m =round((score_tanm / 1000),8)
+    acccot_m =round((score_cotm / 1000),8)
 
-    accsin_p =round((score_sinp / 1000),6)
-    acccos_p =round((score_cosp/ 1000),6)
-    acctan_p =round((score_tanp / 1000),6)
-    acccot_p =round((score_cotp / 1000),6)
+    accsin_p =round((score_sinp / 1000),8)
+    acccos_p =round((score_cosp/ 1000),8)
+    acctan_p =round((score_tanp / 1000),8)
+    acccot_p =round((score_cotp / 1000),8)
     
     return accsin_m,acccos_m,acctan_m,acccot_m,accsin_p,acccos_p,acctan_p,acccot_p
 
+accsin_m,acccos_m,acctan_m,acccot_m,accsin_p,acccos_p,acctan_p,acccot_p = test()
+print(accsin_m,acccos_m,acctan_m,acccot_m,accsin_p,acccos_p,acctan_p,acccot_p)
+    
