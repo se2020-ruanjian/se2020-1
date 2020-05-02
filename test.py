@@ -34,14 +34,14 @@ def test():
         
     
         #matlab计算出的值
-        sin_sem = sign(x,1)
-        cos_sem = cos(x,1)
+        sin_sem = sign2(x,1)
+        cos_sem = cos2(x,1)
         tan_sem = sin_sem / cos_sem
         cot_sem = cos_sem / sin_sem 
     
         #python计算出的值
-        sin_sep = sign(x,2)
-        cos_sep = cos(x,2)
+        sin_sep = sign2(x,2)
+        cos_sep = cos2(x,2)
         tan_sep = sin_sep / cos_sep
         cot_sep = cos_sep / sin_sep
     
