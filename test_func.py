@@ -7,7 +7,7 @@ import math
 eng = matlab.engine.start_matlab()
 
 flag = 1
-def sign(angle,flag):
+def sign2(angle,flag):
     while 1:
         if (angle < 360.0): break
         angle = angle - 360.0
@@ -26,7 +26,7 @@ def sign(angle,flag):
 
     return result
 
-def cos(angle,flag):
+def cos2(angle,flag):
     while 1:
         if (angle < 360.0): break
         angle = angle - 360.0
