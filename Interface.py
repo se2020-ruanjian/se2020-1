@@ -3,6 +3,11 @@ import matlab
 import matlab.engine
 import string
 from math import pi
+import math
+import numpy as np
+import random
+import tkinter.messagebox
+from test_func import *
 root = Tk()
 eng = matlab.engine.start_matlab()
 v1 = IntVar()
@@ -10,8 +15,15 @@ v1.set(1)
 flag = 1
 # eng.se_sin(90)
 
-# 窗口大小  （宽x高）
-root.geometry("300x220")
+# 窗口大小,并把界面移至屏幕中心 （宽x高）
+width = 300
+height = 205
+screenwidth = root.winfo_screenwidth()
+screenheight = root.winfo_screenheight()
+alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth-width)/2, (screenheight-height)/2)
+root.geometry(alignstr)
+
+#root.geometry("300x205")
 
 # 设置title
 root.title("三角函数计算")
@@ -32,19 +44,25 @@ v.set('0')
 # anchor  文本相对于标签中心的位置   默认是center N S W E
 show_label = Label(frame_show, textvariable=v, bg='white', width='30', height='1', anchor='e', font=("黑体", 20, "bold"))
 
+
+
 # 添加到主窗体
 show_label.pack(padx=10, pady=10)
 
-frame_bord = Frame(width=250, height=350)
-frame_bord.pack(padx=10, pady=10)
+frame_bord = Frame(width=250, height=200)
+frame_bord.pack(padx=4, pady=4)
+
+
+#用于测试时的文本提示框
+frame_show2 = Frame(width=250, height=80)
+frame_show2.pack()
+l1 = Label(frame_show2,text="",font=("黑体",10,"bold"))
+l1.pack(padx=5, pady=5)
+#l1.grid(row=5,column=0,columnspan=2)
+
 
 calc = []
 isoperate = False
-
-
-
-#out1=Label(text="sin:",font=('KaiTi',12,'bold'))
-#out1.grid(row=7,column=0)
 
 #
 def change(num):
@@ -221,13 +239,78 @@ def cot():
         v.set(result)
 
 
-#def test():
-    
+def test():
+    l1["text"] = "测试中，请稍等。。。"
+    string1 = str("测试将随机选取1000个数对每一个三角函数进行计算平均精度\n测试需要大约10s，点击确定开始测试，请稍等一会")
+    tkinter.messagebox.showinfo(title='提示', message = string1)
+    score_sinm = 0
+    score_cosm = 0
+    score_tanm = 0
+    score_cotm = 0
 
+    score_sinp = 0
+    score_cosp = 0
+    score_tanp = 0
+    score_cotp = 0
+
+    for i in range(1,1001):
+        x = round(random.uniform(1,3000),3)
+        ##真实值
+        sin_gt = math.sin(x / 180 * math.pi)
+        cos_gt = math.cos(x / 180 * math.pi)
+        tan_gt = math.tan(x / 180 * math.pi)
+        cot_gt = (1 / (math.tan(x / 180 * math.pi)))
+        
+    
+        #matlab计算出的值
+        sin_sem = sign2(x,1)
+        cos_sem = cos2(x,1)
+        tan_sem = sin_sem / cos_sem
+        cot_sem = cos_sem / sin_sem 
+    
+        #python计算出的值
+        sin_sep = sign2(x,2)
+        cos_sep = cos2(x,2)
+        tan_sep = sin_sep / cos_sep
+        cot_sep = cos_sep / sin_sep
+    
+        #matlab计算的误差
+        score_sinm = score_sinm  + abs(sin_gt - sin_sem)
+        score_cosm = score_cosm  + abs(cos_gt - cos_sem)
+        score_tanm = score_tanm  + abs(tan_gt - tan_sem)
+        score_cotm = score_cotm  + abs(cot_gt - cot_sem)
+    
+        #python计算的误差
+        score_sinp = score_sinp  + abs(sin_gt - sin_sep)
+        score_cosp = score_cosp  + abs(cos_gt - cos_sep)
+        score_tanp = score_tanp  + abs(tan_gt - tan_sep)
+        score_cotp = score_cotp  + abs(cot_gt - cot_sep)
+    
+    
+    
+    accsin_m =score_sinm / 1000
+    acccos_m =score_cosm/ 1000
+    acctan_m =score_tanm / 1000
+    acccot_m =score_cotm / 1000
+
+    accsin_p =score_sinp / 1000
+    acccos_p =score_cosp/ 1000
+    acctan_p =score_tanp / 1000
+    acccot_p =score_cotp / 1000
+    if (accsin_m<0.001 and acccos_m<0.001 and acctan_m<0.001 and acctan_m<0.001 and acccot_m<0.001 and accsin_p<0.001 and acccos_p<0.001 and acctan_p<0.001 and acccot_p<0.001):
+        string2 = "测试通过，精度均<0.001，请使用。"
+    else: string2 = "测试失败，请重新测试。"
+    l1["text"] = ""
+    string3 = str("测试完成:\n (要求精度<0.001)\n matlab的sin平均精度：%s\n matlab的cos平均精度：%s\n matlab的tan平均精度：%s\n matlab的cot平均精度：%s\n python的sin平均精度：%s\n python的cos平均精度：%s\n python的tan平均精度：%s\n python的cot平均精度：%s\n\n %s"
+                 %(accsin_m, acccos_m, acctan_m, acccot_m, accsin_p, acccos_p, acctan_p, acccot_p, string2))
+    tkinter.messagebox.showinfo(title='测试结果', message = string3)
+    l1["text"] = ""
+    
 # Button(父组件，属性参数)
-button_del = Button(frame_bord, text='←', width='5', height='1', command=lambda: delete()).grid(row='1', column='0')
-button_del = Button(frame_bord, text='CE', width='5', height='1', command=lambda: clear()).grid(row='1', column='1')
-button_del = Button(frame_bord, text='0', width='5', height='1', command=lambda: change("0")).grid(row='1', column='2')
+#button_del = Button(frame_bord, text=' ', width='5', height='1').grid(row='1', column='3')
+button_del = Button(frame_bord, text='←', width='5', height='1', command=lambda: delete()).grid(row='1', column='2')
+button_del = Button(frame_bord, text='CE', width='5', height='1', command=lambda: clear()).grid(row='4', column='4')
+button_del = Button(frame_bord, text='0', width='5', height='1', command=lambda: change("0")).grid(row='1', column='1')
 button_del = Button(frame_bord, text='Sin', width='5', height='1', command=lambda: sign(1)).grid(row='1', column='3')
 
 button_del = Button(frame_bord, text='7', width='5', height='1', command=lambda: change("7")).grid(row='2', column='0')
@@ -245,11 +328,13 @@ button_del = Button(frame_bord, text='2', width='5', height='1', command=lambda:
 button_del = Button(frame_bord, text='3', width='5', height='1', command=lambda: change("3")).grid(row='4', column='2')
 button_del = Button(frame_bord, text='Cot', width='5', height='1', command=lambda: cot()).grid(row='4', column='3')
 
+button_del = Button(frame_bord, text='test', width='5', height='1', command=lambda: test()).grid(row='1', column='0')
+
 r1 = Radiobutton(frame_bord, text="matlab", value=1, variable=v1,command=sel)
-r1.grid(row=5, column=1)
+r1.grid(row=1, column=4)
 
 r2 = Radiobutton(frame_bord, text="python", value=2, variable=v1,command=sel)
-r2.grid(row=5, column=2)
+r2.grid(row=2, column=4)
 
 
 
