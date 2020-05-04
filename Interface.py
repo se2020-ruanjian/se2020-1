@@ -56,7 +56,7 @@ frame_bord.pack(padx=4, pady=4)
 #用于测试时的文本提示框
 frame_show2 = Frame(width=250, height=80)
 frame_show2.pack()
-l1 = Label(frame_show2,text="",font=("黑体",10,"bold"))
+l1 = Label(frame_show2,text="请输入角度",font=("黑体",10,"bold"))
 l1.pack(padx=5, pady=5)
 #l1.grid(row=5,column=0,columnspan=2)
 
@@ -304,7 +304,7 @@ def test():
     string3 = str("测试完成:\n (要求精度<0.001)\n matlab的sin平均精度：%s\n matlab的cos平均精度：%s\n matlab的tan平均精度：%s\n matlab的cot平均精度：%s\n python的sin平均精度：%s\n python的cos平均精度：%s\n python的tan平均精度：%s\n python的cot平均精度：%s\n\n %s"
                  %(accsin_m, acccos_m, acctan_m, acccot_m, accsin_p, acccos_p, acctan_p, acccot_p, string2))
     tkinter.messagebox.showinfo(title='测试结果', message = string3)
-    l1["text"] = ""
+    l1["text"] = "请输入角度"
     
 # Button(父组件，属性参数)
 #button_del = Button(frame_bord, text=' ', width='5', height='1').grid(row='1', column='3')
