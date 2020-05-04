@@ -36,6 +36,6 @@ Interface
 --------
 点击test按钮时，程序首先会弹出说明框如下图：  
 ![界面图](https://github.com/se20201/se2020/blob/master/test1.png)  
-点击确定后开始测试，测试完成后会显示各个模块测试精度，如下图所示： 
+点击确定后开始测试，测试完成后会显示各个模块测试精度，如下图所示:   
 ![界面图](https://github.com/se20201/se2020/blob/master/test2.png)
 
