@@ -14,6 +14,7 @@ Interface
 代码  
 （1）se_cos.m、se_sin.m使用matlab语言实现cos、sin、tan和cot函数。  
 （2）Interface.py主要实现了三角函数运算人机交互界面显示，通过python语言实现cos、cot、sin和tan函数，配合matlab for python engine 实现混合matlab python编程。  
+（3）test.py和test_func.py是新增的单独对各个模块进行测试的py文件   
 
 三角函数计算  
 首先实现sin和cos,入口参数为角度，先转弧度再进行泰勒展开式迭代运算，如果追求高精度可以提高迭代次数  
