@@ -23,10 +23,10 @@ Interface
 
 2.文件说明
 --------
-  Interface.py为主程序，实现界面编写，python算法编写，调用matlab模块功能。  
-  m文件为matlab函数功能实现，tan和cot的matlab算法采用sin和cos相除得到。 
-  test.py和test_func.py是单独对函数模块进行测试的文件。  
-  测试记录和说明文档是本次项目的一些说明文件和记录文件。  
+  Interface.py为主程序，实现界面编写，python算法编写，调用matlab模块功能。    
+  m文件为matlab函数功能实现，tan和cot的matlab算法采用sin和cos相除得到。   
+  test.py和test_func.py是单独对函数模块进行测试的文件。    
+  测试记录和说明文档是本次项目的一些说明文件和记录文件。    
   
 3.软件安装
 --------
