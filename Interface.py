@@ -99,49 +99,6 @@ def clear():
     v.set("0")
 
 
-#
-# # 操作 +  -  *  /
-# def operate(sign):
-#     global calc
-#     global isoperate
-#     isoperate = True
-#     calc.append(v.get())
-#     if sign == "+":
-#         calc.append(sign)
-#     elif sign == "-":
-#         calc.append(sign)
-#     elif sign == "*":
-#         calc.append(sign)
-#     elif sign == "/":
-#         calc.append(sign)
-#
-#
-# # 运算
-# global calcstr
-#
-#
-# def equal():
-#     global calc
-#     # 获取当前界面的值
-#     calc.append(v.get())
-#     print(calc)
-#     # 列表变字符串 join 把列表用什么拼接成字符串
-#     calcstr = "".join(calc)
-#     print(calcstr)
-#     print(type(calcstr))
-#
-#     # 运算操作 eval（）把str当成有效的表达式进行计算
-#     result = eval(calcstr)
-#     if len(str(result)) > 12:
-#         result = str(result)
-#         result = result[0:12]
-#         v.set(result)
-#     else:
-#         v.set(result)
-#
-#     print(result)
-#
-#
 # 定义退格函数
 def delete():
     # 获取v.get（）长度
@@ -335,10 +292,6 @@ r1.grid(row=1, column=4)
 
 r2 = Radiobutton(frame_bord, text="python", value=2, variable=v1,command=sel)
 r2.grid(row=2, column=4)
-
-
-
-
 
 
 root.mainloop()
