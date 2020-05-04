@@ -2,8 +2,8 @@
 This project is created for the software engineering's classwork . (version：2.0)   
 1.介绍
 -------
-![界面图](https://github.com/se20201/se2020/blob/master/Interface.png)
-![界面图](https://github.com/se20201/se2020/blob/master/Interface2.0.png)  
+![界面图](https://github.com/se2020-ruanjian/se2020-1/blob/master/Interface.png)
+![界面图](https://github.com/se2020-ruanjian/se2020-1/blob/master/Interface2.0.png)  
 左图为1.0版本，右图为修改的2.0版本，加入了test按钮，并重新对按钮布局使其更美观，同时在最下方加入了文字引导。
 
 Language：python、matlab  
@@ -35,7 +35,7 @@ Interface
 4.新增测试按钮
 --------
 点击test按钮时，程序首先会弹出说明框如下图：  
-![界面图](https://github.com/se20201/se2020/blob/master/test1.png)  
+![界面图](https://github.com/se2020-ruanjian/se2020-1/blob/master/test1.png)  
 点击确定后开始测试，测试完成后会显示各个模块测试精度，如下图所示:   
-![界面图](https://github.com/se20201/se2020/blob/master/test2.png)
+![界面图](https://github.com/se2020-ruanjian/se2020-1/blob/master/test2.png)
 
